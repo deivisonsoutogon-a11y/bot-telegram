@@ -60,12 +60,16 @@ def handle_video_download(message):
 
   output_filename = f'video_{message_id}.mp4'
 
-  ydl_opts = {
-      'format': 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best',
-      'outtmpl': output_filename,
-      'quiet': True,
-      'no_warnings': True,
-  }
+      ydl_opts = {
+        'format': 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best',
+        'outtmpl': output_filename,
+        'quiet': True,
+        'no_warnings': True,
+        'http_headers': {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36'
+        }
+    }
+
 
   try:
     with YoutubeDL(ydl_opts) as ydl:
